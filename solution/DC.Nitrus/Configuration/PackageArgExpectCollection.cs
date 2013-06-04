@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DC.Nitrus
 {
-    public class PackageArgExpect
+    public class PackageArgExpectCollection : List<PackageArgExpect>
     {
     }
 }
