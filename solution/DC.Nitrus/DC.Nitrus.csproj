@@ -43,14 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigReader.cs" />
-    <Compile Include="Configuration\PackageArgExpect.cs" />
     <Compile Include="Configuration\PackageConfigFile.cs" />
     <Compile Include="Configuration\WorkspaceConfigFile.cs" />
     <Compile Include="Datacontext.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Package.cs" />
-    <Compile Include="PackageArgExpect.cs" />
-    <Compile Include="PackageArgExpectCollection.cs" />
+    <Compile Include="Configuration\PackageArgExpect.cs" />
+    <Compile Include="Configuration\PackageArgExpectCollection.cs" />
     <Compile Include="PackageArgument.cs" />
     <Compile Include="PackageArgumentCollection.cs" />
     <Compile Include="PackageCollection.cs" />

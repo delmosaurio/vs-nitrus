@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Nitrus", "DC.Nitrus\DC.Nitrus.csproj", "{EB7748CD-2B7B-4516-8535-D865BED0382A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Essential", "DC.Essential\DC.Essential.csproj", "{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{EB7748CD-2B7B-4516-8535-D865BED0382A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7748CD-2B7B-4516-8535-D865BED0382A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7748CD-2B7B-4516-8535-D865BED0382A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
