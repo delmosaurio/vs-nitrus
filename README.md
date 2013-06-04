@@ -1,0 +1,1 @@
+# Nitrus for Visual Studio
