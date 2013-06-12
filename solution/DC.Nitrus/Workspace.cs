@@ -12,7 +12,7 @@ namespace DC.Nitrus
 
         public Datacontext Datacontext { get; set; }
 
-        public PackageCollection Packages { get; set; }
+        public BottleCollection Packages { get; set; }
 
     }
 }

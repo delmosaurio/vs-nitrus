@@ -1,0 +1,29 @@
+﻿<Window x:Class="DC.Nitrus.Explorer.NitrusExplorerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nitrus Explorer" Width="750" Height="440" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid>
+        <TreeView Name="_mainTree" 
+              ItemsSource="{Binding WorkspaceView}" 
+              HorizontalAlignment="Left"
+              Width="200"
+              Margin="10,10,0,50"
+              SelectedItemChanged="_mainTree_SelectedItemChanged"/>
+
+        <ContentControl Name="_container"
+                        HorizontalAlignment="Stretch" 
+                        Margin="220,10,10,50"
+                        />
+        
+        <Grid VerticalAlignment="Bottom" Height="40"
+                    Background="LightGray" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Name="_btnSave" Margin="0,2,5,2" Width="70" Click="_btnSave_Click">Save</Button>
+                <Button Name="_btnCancel" Margin="0,2,5,2" Width="80" Click="_btnCancel_Click">Cancelar</Button>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+
+</Window>

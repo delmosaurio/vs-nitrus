@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Nitrus", "DC.Nitrus\DC.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Essential", "DC.Essential\DC.Essential.csproj", "{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Extensibility.Nitrus", "DC.Extensibility.Nitrus\DC.Extensibility.Nitrus.csproj", "{273628F7-D4B9-40CE-A585-53B18508F27F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Nitrus.Explorer", "DC.Nitrus.Explorer\DC.Nitrus.Explorer.csproj", "{0FF3FA17-7109-4937-AFDD-94DD10223585}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C572D0BB-71F0-4B9F-B651-4211CDA60A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273628F7-D4B9-40CE-A585-53B18508F27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273628F7-D4B9-40CE-A585-53B18508F27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273628F7-D4B9-40CE-A585-53B18508F27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273628F7-D4B9-40CE-A585-53B18508F27F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

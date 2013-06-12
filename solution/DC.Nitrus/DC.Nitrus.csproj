@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,21 +43,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigReader.cs" />
-    <Compile Include="Configuration\PackageConfigFile.cs" />
+    <Compile Include="Configuration\BottleConfigFile.cs" />
     <Compile Include="Configuration\WorkspaceConfigFile.cs" />
     <Compile Include="Datacontext.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="Package.cs" />
-    <Compile Include="Configuration\PackageArgExpect.cs" />
-    <Compile Include="Configuration\PackageArgExpectCollection.cs" />
-    <Compile Include="PackageArgument.cs" />
-    <Compile Include="PackageArgumentCollection.cs" />
-    <Compile Include="PackageCollection.cs" />
+    <Compile Include="Bottle.cs" />
+    <Compile Include="Configuration\BottleArgExpect.cs" />
+    <Compile Include="Configuration\BottleArgExpectCollection.cs" />
+    <Compile Include="BottleArg.cs" />
+    <Compile Include="BottleArgCollection.cs" />
+    <Compile Include="BottleCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Workspace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

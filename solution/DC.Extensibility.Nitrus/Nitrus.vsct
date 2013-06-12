@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+    
+  <Commands package="guidNitrusPkg">
+    
+    <Menus>
+      <Menu guid="guidNitrusCmdSet" id="TopLevelMenu" priority="0x100" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_WINDOWHELP" />
+        <Strings>
+          <ButtonText>Nitrus</ButtonText>
+          <CommandName>Nitrus</CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
+ 
+    <Groups>
+      <Group guid="guidNitrusCmdSet" id="TopLevelMenuGroup" priority="0x0600">
+        <Parent guid="guidNitrusCmdSet" id="TopLevelMenu"/>
+      </Group>
+    </Groups>
+    
+    <Groups>
+      <Group guid="guidNitrusCmdSet" id="HelpMenuGroup" priority="0x0600">
+        <Parent guid="guidNitrusCmdSet" id="TopLevelMenu"/>
+      </Group>
+    </Groups>
+   
+    <Buttons>
+      
+      <Button guid="guidNitrusCmdSet" id="cmdidCompileAll" priority="0x0100" type="Button">
+        <Parent guid="guidNitrusCmdSet" id="TopLevelMenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        
+        <Strings>
+          <CommandName>cmdidCompileAll</CommandName>
+          <ButtonText>Compile all</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNitrusCmdSet" id="cmdidWorkspaceOptions" priority="0x0101" type="Button">
+        <Parent guid="guidNitrusCmdSet" id="TopLevelMenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        
+        <Strings>
+          <CommandName>cmdidWorkspaceOptions</CommandName>
+          <ButtonText>Workspace ...</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidNitrusCmdSet" id="cmdidAbout" priority="0x0101" type="Button">
+        <Parent guid="guidNitrusCmdSet" id="HelpMenuGroup" />
+        <Strings>
+          <CommandName>cmdidAbout</CommandName>
+          <ButtonText>About</ButtonText>
+        </Strings>
+      </Button>
+      
+    </Buttons>
+ 
+  </Commands>
+ 
+   <!--
+  <VisibilityConstraints>
+    <VisibilityItem guid="guidNitrusCmdSet" id="cmdidCompileAll" context="UICONTEXT_SolutionHasMultipleProjects"/>
+    <VisibilityItem guid="guidNitrusCmdSet" id="cmdidWorkspaceOptions" context="UICONTEXT_SolutionHasMultipleProjects"/>
+  </VisibilityConstraints>
+  -->
+  
+  <Symbols>
+    
+    <GuidSymbol name="guidNitrusPkg" value="{f4e0acc2-6e1f-474a-a9d0-bec548a0bfa3}" />
+
+    <GuidSymbol name="guidNitrusCmdSet" value="{e31c43af-f9cb-4d74-90d6-68545a491819}" >
+      <IDSymbol name="TopLevelMenu" value="0x0100" />
+      <IDSymbol name="TopLevelMenuGroup" value="0x0200" />
+      <IDSymbol name="HelpMenuGroup" value="0x0201" />
+      <!-- Comands -->
+      <IDSymbol name="cmdidCompileAll" value="0x0300" />
+      <IDSymbol name="cmdidWorkspaceOptions" value="0x0301" />
+      <IDSymbol name="cmdidAbout" value="0x0302" />
+    </GuidSymbol>
+    <!-- Other Guids for the package -->
+  </Symbols>
+ 
+</CommandTable>
