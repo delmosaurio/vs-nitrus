@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace DC.Nitrus
 {
-    public class BottleArg : DC.Nitrus.Configuration.BottleArgExpect
+    [JsonObject]
+    public class BottleArg
     {
+        [JsonProperty("uid")]
+        public string Uid { get; set; }
+
+        [JsonIgnore]
+        public bool ReadOnly { get; set; }
     }
 }

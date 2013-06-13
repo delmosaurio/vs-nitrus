@@ -42,14 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigReader.cs" />
-    <Compile Include="Configuration\BottleConfigFile.cs" />
-    <Compile Include="Configuration\WorkspaceConfigFile.cs" />
+    <Compile Include="Configuration\WorkspaceManager.cs" />
     <Compile Include="Datacontext.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Bottle.cs" />
-    <Compile Include="Configuration\BottleArgExpect.cs" />
-    <Compile Include="Configuration\BottleArgExpectCollection.cs" />
     <Compile Include="BottleArg.cs" />
     <Compile Include="BottleArgCollection.cs" />
     <Compile Include="BottleCollection.cs" />

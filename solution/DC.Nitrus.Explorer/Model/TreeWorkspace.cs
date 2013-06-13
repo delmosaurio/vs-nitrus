@@ -25,14 +25,14 @@ namespace DC.Nitrus.Explorer.Model
 
         #region Members
         public RootTreeItem Root { get; set; }
-        public PackagesTreeItem Packages { get; set; }
+        public BottlesTreeItem Packages { get; set; }
         #endregion
 
         #region Helpers
         private void CreateNodes()
         {
             Root = new RootTreeItem(_workspace);
-            Packages = new PackagesTreeItem(_workspace.Config.Packages);
+            Packages = new BottlesTreeItem(_workspace.Config.Packages);
             
             this.Add(Root);
             this.Add(Packages);

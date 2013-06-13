@@ -9,37 +9,37 @@ using DC.Nitrus.Configuration;
 
 namespace DC.Nitrus.Explorer.Model
 {
-    public class PackagesTreeItem : TreeViewItem
+    public class BottleTreeItem : TreeViewItem
     {
 
-        #region Fields 
-        private List<PackageConfig> _packages;
+        #region Fields
+        private List<LayerConfig> _layers;
         #endregion
 
         #region Constructor
-        public PackagesTreeItem(List<PackageConfig> packages)
+        public BottleTreeItem(PackageConfig pkg)
         {
-            _packages = packages;
-            this.Tag = _packages;
+            this.Header = pkg.PackageName;
+            this.Tag = pkg;
 
-            this.Header = "Packages";
-
+            _layers = pkg.Layers;
+            
             CreateNodes();
+
         }
-
-        private void CreateNodes()
-        {
-            foreach(var pkg in _packages)
-            {
-
-                Items.Add(new PackageTreeItem(pkg));
-
-            }
-        }
-
         #endregion
 
         #region Helpers
+        private void CreateNodes()
+        {
+         
+            foreach (var l in _layers)
+            {
+                this.Items.Add(new LayerTreeItem(l));
+            }
+   
+        }
         #endregion
+
     }
 }

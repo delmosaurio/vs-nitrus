@@ -80,11 +80,11 @@
     <Compile Include="ViewControl\NitrusGeneralControl.xaml.cs">
       <DependentUpon>NitrusGeneralControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewControl\PackageControl.xaml.cs">
-      <DependentUpon>PackageControl.xaml</DependentUpon>
+    <Compile Include="ViewControl\BottleControl.xaml.cs">
+      <DependentUpon>BottleControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewControl\PackagesControl.xaml.cs">
-      <DependentUpon>PackagesControl.xaml</DependentUpon>
+    <Compile Include="ViewControl\BottlesControl.xaml.cs">
+      <DependentUpon>BottlesControl.xaml</DependentUpon>
     </Compile>
     <Page Include="NitrusExplorerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -110,19 +110,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewControl\PackageControl.xaml">
+    <Page Include="ViewControl\BottleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewControl\PackagesControl.xaml">
+    <Page Include="ViewControl\BottlesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\LayerTreeItem.cs" />
-    <Compile Include="Model\PackagesTreeItem.cs" />
-    <Compile Include="Model\PackageTreeItem.cs" />
+    <Compile Include="Model\BottlesTreeItem.cs" />
+    <Compile Include="Model\BottleTreeItem.cs" />
     <Compile Include="Model\RootTreeItem.cs" />
     <Compile Include="Model\TreeWorkspace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
