@@ -15,11 +15,63 @@ namespace DC.Nitrus.Configuration
         #region Members
         public static string DefaultFilename = "workspace.json";
 
+        public static bool IsAWorkspace(string path)
+        {
+            var e = Directory.Exists(path);
+
+            if (!e)
+                throw new Exception("The path is empty");
+
+            var rex = new Regex(DefaultFilename, RegexOptions.IgnoreCase);
+
+            return Directory.GetFiles(path).Any(rex.IsMatch);
+        }
+
         public static Workspace Load(string path)
         {
             var ws = ConfigReader.Read<Workspace>(Path.Combine(path, DefaultFilename));
 
+            LoadContext(ws, path);
+
             return ws;
+        }
+
+        protected static void LoadContext(Workspace ws, string path)
+        {
+            var bpath = Path.Combine(path, BottleManager.RelativePath);
+
+            // read bottles in the ´path´
+            var pdir = new DirectoryInfo(bpath);
+
+            var folders = pdir.GetDirectories("*", SearchOption.TopDirectoryOnly);
+
+            var bottles = folders
+                          .Select(f => f.FullName)
+                          .Where(BottleManager.IsABottle)
+                          .Select(BottleManager.Load);
+
+            ws.Bottles.AddRange(bottles);
+
+            // refresh de context
+            var ctx = ws.Context;
+            var expects = ws.Bottles.SelectMany(b => b.Arguments);
+
+            // add arg if not exist
+            // with default value
+            var argsToAdd = expects
+                        .Where(arg => !ctx.Arguments.Contains(arg.Fullname))
+                        .Select(arg => new BottleArgValue(arg.Fullname, arg.DefaultValue));
+
+            ctx.Arguments.AddRange(argsToAdd);
+
+            // add layers if not exist
+            var layers = ws.Bottles.SelectMany(b => b.Layes);
+            
+            var lyToAdd = layers
+                        .Where(l => !ctx.LayersScopes.Contains(l.Fullname))
+                        .Select(l => new LayerScope(l.Fullname));
+            
+            ctx.LayersScopes.AddRange(lyToAdd);
         }
 
         public static Workspace Create()
@@ -33,6 +85,8 @@ namespace DC.Nitrus.Configuration
             
             if (string.IsNullOrEmpty(path)) return ws;
 
+            LoadContext(ws, path);
+            
             Save(ws, path, force);
 
             return ws;

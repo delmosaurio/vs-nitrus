@@ -6,7 +6,7 @@ namespace DC.Utils
 {
     public class ConfigReader
     {
-
+        #region Members
         static ConfigReader()
         { }
         
@@ -47,6 +47,7 @@ namespace DC.Utils
             var json = File.ReadAllText(filename);
             return JsonConvert.DeserializeObject<T>(json);
         }
-        
+        #endregion
+
     }
 }

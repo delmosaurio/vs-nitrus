@@ -9,6 +9,7 @@ namespace DC.Utils
     public class ConfigWriter
     {
 
+        #region Members
         public static void Write<T>(T config, string filename) where T : class
         {
             var extension = Path.GetExtension(filename);
@@ -51,5 +52,7 @@ namespace DC.Utils
         {
             File.WriteAllText(filename, JsonConvert.SerializeObject(config, formatting));
         }
+        #endregion
+
     }
 }

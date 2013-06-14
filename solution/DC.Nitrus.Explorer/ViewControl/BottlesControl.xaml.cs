@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace DC.Nitrus.Explorer.ViewControl
 {
     /// <summary>
-    /// Interaction logic for PackagesControl.xaml
+    /// Interaction logic for BottlesCollectionControl.xaml
     /// </summary>
-    public partial class PackagesControl : UserControl
+    public partial class BottlesCollectionControl : UserControl
     {
-        public PackagesControl()
+        public BottlesCollectionControl()
         {
             InitializeComponent();
         }

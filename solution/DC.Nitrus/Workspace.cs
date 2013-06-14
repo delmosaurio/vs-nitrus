@@ -11,7 +11,9 @@ namespace DC.Nitrus
     public class Workspace
     {
         #region Fields
-        private BottleCollection _packages;
+        private BottleCollection _bottles;
+
+        private Datacontext _context;
 
         private string _modelType = "manual";
         private string _connString = "";
@@ -49,13 +51,23 @@ namespace DC.Nitrus
             set { _providerName = value; }
         }
 
-        [JsonProperty(PropertyName = "datacontext")]
-        public Datacontext Datacontext { get; set; }
+        [JsonProperty(PropertyName = "context")]
+        public Datacontext Context
+        {
+            get { return _context ?? (_context = new Datacontext(true)); }
+            set { _context = value; }
+        }
 
         [JsonIgnore]
-        public BottleCollection Packages
+        public IProjectsProvider ProjectProvider
         {
-            get { return _packages ?? (_packages = new BottleCollection()); }
+            get { return ProjectsProvider.CurrentProvider; }
+        }
+
+        [JsonIgnore]
+        public BottleCollection Bottles
+        {
+            get { return _bottles ?? (_bottles = new BottleCollection()); }
         }
         #endregion
 

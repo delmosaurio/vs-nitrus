@@ -16,6 +16,8 @@ namespace DC.Nitrus
         private string _description = "";
 
         private BottleArgCollection _args;
+
+        private LayerCollection _layers;
         #endregion
 
         #region Constructor
@@ -47,12 +49,35 @@ namespace DC.Nitrus
             set { _description = value; }
         }
 
-        [JsonProperty("arguments")]
+        [JsonIgnore]
         public BottleArgCollection Arguments
         {
             get { return _args ?? (_args = new BottleArgCollection()); }
             set { _args = value; }
         }
+
+        // This solutions is for not create a custom JsonConverter
+        [JsonProperty("expects")]
+        public List<BottleArg> ListArguments
+        {
+            get
+            {
+                return this.Arguments.ToList();
+            }
+            set
+            {
+                _args = new BottleArgCollection();
+                _args.AddRange(value);
+            }
+        }
+        
+        [JsonIgnore]
+        public LayerCollection Layes
+        {
+            get { return _layers ?? (_layers = new LayerCollection()); }
+            set { _layers = value; }
+        }
+
         #endregion
     }
 }

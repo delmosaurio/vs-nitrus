@@ -51,7 +51,14 @@
     <Compile Include="BottleArg.cs" />
     <Compile Include="BottleArgCollection.cs" />
     <Compile Include="BottleCollection.cs" />
+    <Compile Include="IProjectsProvider.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="LayerCollection.cs" />
+    <Compile Include="LayerScope.cs" />
+    <Compile Include="LayerScopeCollection.cs" />
+    <Compile Include="ProjectsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DebugProjectProcider.cs" />
     <Compile Include="Workspace.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -86,7 +86,7 @@
     <Compile Include="ViewControl\BottlesControl.xaml.cs">
       <DependentUpon>BottlesControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="NitrusExplorerWindow.xaml">
+    <Page Include="NitrusExplorer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,8 +94,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NitrusExplorerWindow.xaml.cs">
-      <DependentUpon>NitrusExplorerWindow.xaml</DependentUpon>
+    <Compile Include="NitrusExplorer.xaml.cs">
+      <DependentUpon>NitrusExplorer.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ViewControl\DatabaseControl.xaml">

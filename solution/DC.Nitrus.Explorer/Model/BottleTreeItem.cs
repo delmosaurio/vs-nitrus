@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using DC.Automation;
 using DC.Nitrus.Configuration;
 
 namespace DC.Nitrus.Explorer.Model
@@ -13,16 +12,16 @@ namespace DC.Nitrus.Explorer.Model
     {
 
         #region Fields
-        private List<LayerConfig> _layers;
+        private LayerCollection _layers;
         #endregion
 
         #region Constructor
-        public BottleTreeItem(PackageConfig pkg)
+        public BottleTreeItem(Bottle bottle)
         {
-            this.Header = pkg.PackageName;
-            this.Tag = pkg;
+            this.Header = bottle.Uid;
+            this.Tag = bottle;
 
-            _layers = pkg.Layers;
+            _layers = bottle.Layes;
             
             CreateNodes();
 

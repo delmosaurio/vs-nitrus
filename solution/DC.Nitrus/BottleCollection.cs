@@ -12,7 +12,7 @@ namespace DC.Nitrus
         #region Members
         public Bottle this[string uid]
         {
-            get { return this.SingleOrDefault(b => b.Uid == uid); }
+            get { return this.SingleOrDefault(b => b.Uid.ToLower() == uid.ToLower()); }
         }
         #endregion
     }

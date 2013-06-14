@@ -108,16 +108,60 @@ namespace DC.Nitrus.Test
         [TestMethod]
         public void Solution1()
         {
-            var path = Path.Combine(_cases, "solution1");
+            // project provider
+            ProjectsProvider.CurrentProvider = new DebugProjectProcider();
 
+            var path = Path.Combine(_cases, "solution1");
+            
             // remove all first
             if (Directory.Exists(path)) Directory.Delete(path, true);
 
             // create bottles
-            BottleManager.Initialize("package1", path);
-            BottleManager.Initialize("package2", path);
-            BottleManager.Initialize("package3", path);
+
+            // bottle1
+            var pkg1 = BottleManager.Initialize("package1", path);
+
+            var arg1 = new BottleArg() { Name = "arg1", DefaultValue = "value1"};
+            var arg2 = new BottleArg() { Name = "arg2", DefaultValue = "value2" };
             
+            pkg1.Arguments.Add(arg1);
+            pkg1.Arguments.Add(arg2);
+
+            BottleManager.Save(pkg1, path, true);
+
+            var lp = Path.Combine(path, "bottles/package1");
+
+            Directory.CreateDirectory(Path.Combine(lp, "layer1"));
+            Directory.CreateDirectory(Path.Combine(lp, "layer2"));
+            Directory.CreateDirectory(Path.Combine(lp, "layer3"));
+
+            // bottle2
+
+            var pkg2 = BottleManager.Initialize("package2", path);
+
+            pkg2.Arguments.Add(arg1);
+            pkg2.Arguments.Add(arg2);
+
+            BottleManager.Save(pkg2, path, true);
+
+            lp = Path.Combine(path, "bottles/package2");
+
+            Directory.CreateDirectory(Path.Combine(lp, "layer1"));
+            
+            // bottle3
+            var pkg3 = BottleManager.Initialize("package3", path);
+
+            pkg3.Arguments.Add(arg1);
+
+            BottleManager.Save(pkg3, path, true);
+
+            lp = Path.Combine(path, "bottles/package3");
+
+            Directory.CreateDirectory(Path.Combine(lp, "layer1"));
+            Directory.CreateDirectory(Path.Combine(lp, "layer3"));
+
+            var ws = WorkspaceManager.Initialize(path);
+
         }
         #endregion
 

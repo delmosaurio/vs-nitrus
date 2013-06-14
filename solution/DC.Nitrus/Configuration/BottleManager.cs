@@ -13,11 +13,45 @@ namespace DC.Nitrus.Configuration
     {
         
         #region Members
-        public static string DefaultFilename = "package.json";
+        public static string RelativePath = "bottles";
+
+        public static string DefaultFilename = "bottle.json";
+
+        public static bool IsABottle(string path)
+        {
+            var e = Directory.Exists(path);
+
+            if (!e) 
+                throw new Exception("The path is empty");
+
+            var rex = new Regex(DefaultFilename, RegexOptions.IgnoreCase);
+
+            return Directory.GetFiles(path).Any(rex.IsMatch);
+        }
 
         public static Bottle Load(string path)
         {
+            if ( !IsABottle(path) ) 
+                throw new Exception("The path not contains a bottle");
+
+            // read file
             var bottle = ConfigReader.Read<Bottle>(Path.Combine(path, DefaultFilename));
+
+            // load arguments
+            foreach (var arg in bottle.Arguments)
+            {
+                arg.Owner = bottle;
+            }
+
+            // load layers
+            var pdir = new DirectoryInfo(path);
+
+            var folders = pdir.GetDirectories("*", SearchOption.TopDirectoryOnly);
+
+            var layers = folders
+                          .Select(f => new Layer(f.FullName, bottle));
+
+            bottle.Layes.AddRange(layers);
 
             return bottle;
         }
@@ -35,15 +69,16 @@ namespace DC.Nitrus.Configuration
 
             if (string.IsNullOrEmpty(path)) return b;
 
-            var output = Path.Combine(path, uid);
-
-            Save(b, output, force);
+            Save(b, path, force);
 
             return b;
         }
 
-        public static void Save(Bottle bottle, string path, bool force = false)
+        public static void Save(Bottle bottle, string workspacePath, bool force = false)
         {
+
+            var path = Path.Combine(workspacePath, "bottles", bottle.Uid);
+
             DirectoryInfo dir;
 
             if (!Directory.Exists(path))

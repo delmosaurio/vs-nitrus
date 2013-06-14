@@ -8,7 +8,7 @@ namespace DC.Nitrus.Explorer.Model
 {
     public class DatabaseTreeItem : GeneralTreeItem
     {
-        public DatabaseTreeItem(NitrusWorkspace workspace)
+        public DatabaseTreeItem(Workspace workspace)
             : base(workspace)
         {
             

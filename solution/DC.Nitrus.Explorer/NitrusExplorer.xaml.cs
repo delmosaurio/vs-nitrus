@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DC.Nitrus.Configuration;
 using DC.Nitrus.Explorer.Model;
 using DC.Nitrus.Explorer.ViewControl;
 using Control = System.Windows.Controls.Control;
@@ -23,33 +24,31 @@ using UserControl = System.Windows.Controls.UserControl;
 namespace DC.Nitrus.Explorer
 {
     /// <summary>
-    /// Interaction logic for NitrusExplorerWindow.xaml
+    /// Interaction logic for NitrusExplorer.xaml
     /// </summary>
-    public partial class NitrusExplorerWindow : Window
+    public partial class NitrusExplorer : Window
     {
 
         #region Fields
         private string _solPath = "";
 
-        private NitrusWorkspace _workspace;
+        private Workspace _workspace;
         #endregion
 
         #region Constructor(s)
-        public NitrusExplorerWindow()
+        public NitrusExplorer()
         {
             InitializeComponent();
             
             // initialize control instances
+            
             this.GeneralControl = new NitrusGeneralControl();
             this.DatabaseControl = new DatabaseControl();
-            this.PackagesControl = new PackagesControl();
-            this.PackageControl = new PackageControl();
+            this.BottlesCollectionControl = new BottlesCollectionControl();
+            this.BottleControl = new BottleControl();
             this.LayerControl = new LayerControl();
-            
-            // load the workspace
-            //string[] pnames = { "Data", "Web"};
 
-            //LoadWorkspace(@"D:\dev\data\ns", pnames);
+            LoadWorkspace(@"D:\dev\data\ns\solution1");
 
             DataContext = this;
         }
@@ -57,7 +56,7 @@ namespace DC.Nitrus.Explorer
         #endregion
 
         #region Members
-        public NitrusWorkspace GetCurrentWorkSpace()
+        public Workspace GetCurrentWorkSpace()
         {
             return _workspace;
         }
@@ -81,13 +80,16 @@ namespace DC.Nitrus.Explorer
 
             }
 
-            var wk = new NitrusWorkspace(_solPath, true, projectNames);
+            var wk = WorkspaceManager.Load(_solPath);
 
             LoadWorkspace(wk);
         }
 
-        public void LoadWorkspace(NitrusWorkspace workspace)
+        public void LoadWorkspace(Workspace workspace)
         {
+            // for debbug
+            ProjectsProvider.CurrentProvider = new DebugProjectProcider();
+
             _workspace = workspace;
             WorkspaceView = new TreeWorkspace(_workspace);
         }
@@ -96,9 +98,9 @@ namespace DC.Nitrus.Explorer
 
         private DatabaseControl DatabaseControl { get; set; }
 
-        private PackagesControl PackagesControl { get; set; }
+        private BottlesCollectionControl BottlesCollectionControl { get; set; }
 
-        private PackageControl PackageControl { get; set; }
+        private BottleControl BottleControl { get; set; }
 
         private LayerControl LayerControl { get; set; }
 
@@ -112,14 +114,12 @@ namespace DC.Nitrus.Explorer
         
         #endregion
 
+        #region Handlers
         private void _mainTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var node = (TreeViewItem)e.NewValue;
 
-            if (node == null)
-            {
-                return;
-            }
+            if (node == null) { return; }
             
             var nodeType = e.NewValue.GetType().Name;
             
@@ -133,10 +133,10 @@ namespace DC.Nitrus.Explorer
                     CurrentView = this.DatabaseControl;
                     break;
                 case ("PackagesTreeItem"):
-                    CurrentView = this.PackagesControl;
+                    CurrentView = this.BottlesCollectionControl;
                     break;
                 case ("PackageTreeItem"):
-                    CurrentView = this.PackageControl;
+                    CurrentView = this.BottleControl;
                     break;
                 case ("LayerTreeItem"):
                     CurrentView = this.LayerControl;
@@ -159,13 +159,14 @@ namespace DC.Nitrus.Explorer
         {
             if (_workspace == null) return;
 
-            _workspace.SaveConfig();
+            WorkspaceManager.Save( _workspace, _solPath, true );
         }
 
         private void _btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+        #endregion
 
     }
 }

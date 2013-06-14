@@ -11,19 +11,18 @@ namespace DC.Nitrus.Explorer.Model
     {
 
         #region Fields
-        private NitrusWorkspace _workspace;
+        private Workspace _workspace;
         #endregion
 
         #region Constructor
-        public RootTreeItem(NitrusWorkspace workspace)
+        public RootTreeItem(Workspace workspace)
         {
             _workspace = workspace;
-            this.Tag = _workspace.Config;
+            this.Tag = _workspace;
 
             this.Header = "Nitrus";
 
             CreateNodes();
-
         }
         
         #endregion

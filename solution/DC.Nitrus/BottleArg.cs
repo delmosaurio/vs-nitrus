@@ -9,6 +9,16 @@ namespace DC.Nitrus
     [JsonObject]
     public class BottleArg
     {
+
+        #region Constructor
+        public BottleArg()
+        {
+            Name = "";
+            DefaultValue = "";
+            Description = "";
+        }
+        #endregion
+
         #region Members
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -25,6 +35,7 @@ namespace DC.Nitrus
         [JsonIgnore]
         public Bottle Owner { get; set; }
 
+        [JsonIgnore]
         public string Fullname
         {
             get

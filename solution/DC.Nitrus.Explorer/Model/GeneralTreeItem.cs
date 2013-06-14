@@ -9,9 +9,9 @@ namespace DC.Nitrus.Explorer.Model
 {
     public class GeneralTreeItem : TreeViewItem 
     {
-        public GeneralTreeItem(NitrusWorkspace workspace)
+        public GeneralTreeItem(Workspace workspace)
         {
-            this.Tag = workspace.Config;
+            this.Tag = workspace;
         }
     }
 }

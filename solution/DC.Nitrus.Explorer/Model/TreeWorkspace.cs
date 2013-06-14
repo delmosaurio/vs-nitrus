@@ -11,11 +11,11 @@ namespace DC.Nitrus.Explorer.Model
     {
 
         #region Fields
-        private NitrusWorkspace _workspace;
+        private Workspace _workspace;
         #endregion
 
         #region Constructor
-        public TreeWorkspace(NitrusWorkspace workspace)
+        public TreeWorkspace(Workspace workspace)
         {
             _workspace = workspace;
             
@@ -25,6 +25,7 @@ namespace DC.Nitrus.Explorer.Model
 
         #region Members
         public RootTreeItem Root { get; set; }
+
         public BottlesTreeItem Packages { get; set; }
         #endregion
 
@@ -32,7 +33,7 @@ namespace DC.Nitrus.Explorer.Model
         private void CreateNodes()
         {
             Root = new RootTreeItem(_workspace);
-            Packages = new BottlesTreeItem(_workspace.Config.Packages);
+            Packages = new BottlesTreeItem(_workspace.Bottles);
             
             this.Add(Root);
             this.Add(Packages);

@@ -15,6 +15,14 @@ namespace DC.Nitrus
         {
             get { return this.SingleOrDefault(a => a.Fullname.ToLower() == fullname.ToLower()); }
         }
+
+        public bool Contains(string fullname)
+        {
+            return 
+                this
+                .Select(b => b.Fullname.ToLower())
+                .Contains(fullname.ToLower());
+        }
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="DC.Nitrus.Explorer.NitrusExplorerWindow"
+﻿<Window x:Class="DC.Nitrus.Explorer.NitrusExplorer"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Nitrus Explorer" Width="750" Height="440" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
