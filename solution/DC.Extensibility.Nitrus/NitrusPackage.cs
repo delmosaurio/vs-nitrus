@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
+using DC.Nitrus;
+using DC.Nitrus.Configuration;
+using DC.Nitrus.Explorer;
 using EnvDTE;
+using EnvDTE80;
 using Microsoft.Win32;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -53,7 +59,6 @@ namespace DC.Extensibility.Nitrus
         public NitrusPackage()
         {
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering constructor for: {0}", this.ToString()));
-
         }
 
         // Overridden Package Implementation
@@ -104,18 +109,18 @@ namespace DC.Extensibility.Nitrus
             base.Dispose(disposing);
         }
 
-        #endregion
-        
         private void AdviseSolutionEvents()
         {
             UnadviseSolutionEvents();
 
             solution = this.GetService(typeof(SVsSolution)) as IVsSolution;
-
+            
             if (solution != null)
             {
                 solution.AdviseSolutionEvents(this, out _handleCookie);
             }
+
+
         }
 
         private void UnadviseSolutionEvents()
@@ -131,7 +136,9 @@ namespace DC.Extensibility.Nitrus
                 solution = null;
             }
         }
-
+        #endregion
+        
+        #region Handlers
         public int OnAfterLoadProject(IVsHierarchy pStubHierarchy, IVsHierarchy pRealHierarchy)
         {
             // Do something
@@ -190,9 +197,10 @@ namespace DC.Extensibility.Nitrus
         {
             var sol = _dte.Solution;
         }
+        #endregion
 
         #region Menu callbacks
-        
+
         private void CompileAll(object sender, EventArgs e)
         {
             
@@ -234,6 +242,35 @@ namespace DC.Extensibility.Nitrus
             var clsid = GuidList.guidNitrusCmdSet;
             int result;
 
+            if (_dte == null || solution == _dte.Solution) return;
+
+            var ms = new SolutionManager(_dte.Solution);
+
+            ProjectsProvider.CurrentProvider = new DebugProjectProcider();
+
+            ProjectsProvider.CurrentProvider.ProjectNames = ms.ProjectNames.ToArray();
+
+            var outPath = Path.Combine(ms.SolutionPath, "_Nitrus");
+            
+            if (!Directory.Exists(outPath))
+            {
+                Directory.CreateDirectory(outPath);
+            }
+
+            if (!WorkspaceManager.IsAWorkspace(outPath))
+            {
+                WorkspaceManager.Initialize(outPath);
+            }
+
+            var ws = WorkspaceManager.Initialize(outPath);
+
+            var explorer = new NitrusExplorer();
+
+            explorer.LoadWorkspace(ws);
+
+            explorer.ShowDialog();
+
+            /*
             uiShell.ShowMessageBox(
                 0,
                 ref clsid,
@@ -246,6 +283,7 @@ namespace DC.Extensibility.Nitrus
                 OLEMSGICON.OLEMSGICON_INFO,
                 0, // false
                 out result);
+            */
 
         }
 

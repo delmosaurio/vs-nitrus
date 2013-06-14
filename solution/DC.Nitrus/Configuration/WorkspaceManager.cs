@@ -20,13 +20,13 @@ namespace DC.Nitrus.Configuration
             var e = Directory.Exists(path);
 
             if (!e)
-                throw new Exception("The path is empty");
+                throw new Exception("The path not exists");
 
             var rex = new Regex(DefaultFilename, RegexOptions.IgnoreCase);
 
             return Directory.GetFiles(path).Any(rex.IsMatch);
         }
-
+        
         public static Workspace Load(string path)
         {
             var ws = ConfigReader.Read<Workspace>(Path.Combine(path, DefaultFilename));

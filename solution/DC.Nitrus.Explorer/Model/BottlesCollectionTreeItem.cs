@@ -8,7 +8,7 @@ using DC.Nitrus.Configuration;
 
 namespace DC.Nitrus.Explorer.Model
 {
-    public class BottlesTreeItem : TreeViewItem
+    public class BottlesCollectionTreeItem : TreeViewItem
     {
 
         #region Fields 
@@ -16,7 +16,7 @@ namespace DC.Nitrus.Explorer.Model
         #endregion
 
         #region Constructor
-        public BottlesTreeItem(BottleCollection packages)
+        public BottlesCollectionTreeItem(BottleCollection packages)
         {
             _packages = packages;
             this.Tag = _packages;

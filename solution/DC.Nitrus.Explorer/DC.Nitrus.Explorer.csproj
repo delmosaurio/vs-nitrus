@@ -83,8 +83,8 @@
     <Compile Include="ViewControl\BottleControl.xaml.cs">
       <DependentUpon>BottleControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewControl\BottlesControl.xaml.cs">
-      <DependentUpon>BottlesControl.xaml</DependentUpon>
+    <Compile Include="ViewControl\BottlesCollection.xaml.cs">
+      <DependentUpon>BottlesCollection.xaml</DependentUpon>
     </Compile>
     <Page Include="NitrusExplorer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -114,14 +114,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewControl\BottlesControl.xaml">
+    <Page Include="ViewControl\BottlesCollection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\LayerTreeItem.cs" />
-    <Compile Include="Model\BottlesTreeItem.cs" />
+    <Compile Include="Model\BottlesCollectionTreeItem.cs" />
     <Compile Include="Model\BottleTreeItem.cs" />
     <Compile Include="Model\RootTreeItem.cs" />
     <Compile Include="Model\TreeWorkspace.cs" />

@@ -47,12 +47,9 @@ namespace DC.Nitrus.Explorer
             this.BottlesCollectionControl = new BottlesCollectionControl();
             this.BottleControl = new BottleControl();
             this.LayerControl = new LayerControl();
-
-            LoadWorkspace(@"D:\dev\data\ns\solution1");
-
+            
             DataContext = this;
         }
-
         #endregion
 
         #region Members
@@ -87,9 +84,7 @@ namespace DC.Nitrus.Explorer
 
         public void LoadWorkspace(Workspace workspace)
         {
-            // for debbug
-            ProjectsProvider.CurrentProvider = new DebugProjectProcider();
-
+            
             _workspace = workspace;
             WorkspaceView = new TreeWorkspace(_workspace);
         }
@@ -132,10 +127,10 @@ namespace DC.Nitrus.Explorer
                 case ("DatabaseTreeItem"):
                     CurrentView = this.DatabaseControl;
                     break;
-                case ("PackagesTreeItem"):
+                case ("BottlesTreeItem"):
                     CurrentView = this.BottlesCollectionControl;
                     break;
-                case ("PackageTreeItem"):
+                case ("BottleTreeItem"):
                     CurrentView = this.BottleControl;
                     break;
                 case ("LayerTreeItem"):
