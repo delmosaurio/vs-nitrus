@@ -9,36 +9,40 @@ using DC.Utils;
 
 namespace DC.Nitrus.Configuration
 {
-    public class WorkspaceManager
+    public class BottleManager
     {
-
+        
         #region Members
-        public static string DefaultFilename = "workspace.json";
+        public static string DefaultFilename = "package.json";
 
-        public static Workspace Load(string path)
+        public static Bottle Load(string path)
         {
-            var ws = ConfigReader.Read<Workspace>(Path.Combine(path, DefaultFilename));
+            var bottle = ConfigReader.Read<Bottle>(Path.Combine(path, DefaultFilename));
 
-            return ws;
+            return bottle;
         }
 
-        public static Workspace Create()
+        public static Bottle Create()
         {
-            return new Workspace(true);
+            return new Bottle(true);
         }
 
-        public static Workspace Initialize(string path = "", bool force = false)
+        public static Bottle Initialize(string uid, string path = "", bool force = false)
         {
-            var ws = Create();
-            
-            if (string.IsNullOrEmpty(path)) return ws;
+            var b = Create();
 
-            Save(ws, path, force);
+            b.Uid = uid;
 
-            return ws;
+            if (string.IsNullOrEmpty(path)) return b;
+
+            var output = Path.Combine(path, uid);
+
+            Save(b, output, force);
+
+            return b;
         }
 
-        public static void Save(Workspace workspace, string path, bool force = false)
+        public static void Save(Bottle bottle, string path, bool force = false)
         {
             DirectoryInfo dir;
 
@@ -52,7 +56,7 @@ namespace DC.Nitrus.Configuration
 
                 if (Directory.GetFiles(path).Any(rex.IsMatch))
                 {
-                    throw new Exception("The path already have a workspace");
+                    throw new Exception("The path already have a bottle");
                 }
 
                 dir = new DirectoryInfo(path);
@@ -60,7 +64,7 @@ namespace DC.Nitrus.Configuration
 
             var filename = Path.Combine(path, DefaultFilename);
 
-            ConfigWriter.Write(workspace, filename);
+            ConfigWriter.Write(bottle, filename);
         }
         #endregion
 

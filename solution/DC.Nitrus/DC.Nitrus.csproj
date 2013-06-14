@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BottleArgValue.cs" />
+    <Compile Include="BottleArgValueCollection.cs" />
+    <Compile Include="Configuration\BottleManager.cs" />
     <Compile Include="Configuration\WorkspaceManager.cs" />
     <Compile Include="Datacontext.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="Bottle.cs" />
     <Compile Include="BottleArg.cs" />
     <Compile Include="BottleArgCollection.cs" />
@@ -54,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DC.Essential\DC.Essential.csproj">
+      <Project>{c572d0bb-71f0-4b9f-b651-4211cda60a4f}</Project>
+      <Name>DC.Essential</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

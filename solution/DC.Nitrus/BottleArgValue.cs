@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace DC.Nitrus
 {
     [JsonObject]
-    public class BottleCollection : List<Bottle>
+    public class BottleArgValue
     {
         #region Members
-        public Bottle this[string uid]
-        {
-            get { return this.SingleOrDefault(b => b.Uid == uid); }
-        }
+        public string Fullname { get; set; }
         #endregion
     }
 }

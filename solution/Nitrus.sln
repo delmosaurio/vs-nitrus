@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Extensibility.Nitrus", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Nitrus.Explorer", "DC.Nitrus.Explorer\DC.Nitrus.Explorer.csproj", "{0FF3FA17-7109-4937-AFDD-94DD10223585}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Nitrus.Test", "DC.Nitrus.Test\DC.Nitrus.Test.csproj", "{881FD037-050B-4AE0-8E51-C82D38D410DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF3FA17-7109-4937-AFDD-94DD10223585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{881FD037-050B-4AE0-8E51-C82D38D410DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881FD037-050B-4AE0-8E51-C82D38D410DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881FD037-050B-4AE0-8E51-C82D38D410DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881FD037-050B-4AE0-8E51-C82D38D410DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
