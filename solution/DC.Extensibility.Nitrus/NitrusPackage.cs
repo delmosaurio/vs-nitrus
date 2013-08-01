@@ -242,33 +242,13 @@ namespace DC.Extensibility.Nitrus
             var clsid = GuidList.guidNitrusCmdSet;
             int result;
 
-            if (_dte == null || solution == _dte.Solution) return;
+            if (_dte == null || _dte.Solution == null) return;
 
-            var ms = new SolutionManager(_dte.Solution);
-
-            ProjectsProvider.CurrentProvider = new DebugProjectProcider();
-
-            ProjectsProvider.CurrentProvider.ProjectNames = ms.ProjectNames.ToArray();
-
-            var outPath = Path.Combine(ms.SolutionPath, "_Nitrus");
+            var mediator = new Mediator(_dte.Solution);
             
-            if (!Directory.Exists(outPath))
-            {
-                Directory.CreateDirectory(outPath);
-            }
+            mediator.LaunchWorkspaceExplorer();
 
-            if (!WorkspaceManager.IsAWorkspace(outPath))
-            {
-                WorkspaceManager.Initialize(outPath);
-            }
 
-            var ws = WorkspaceManager.Initialize(outPath);
-
-            var explorer = new NitrusExplorer();
-
-            explorer.LoadWorkspace(ws);
-
-            explorer.ShowDialog();
 
             /*
             uiShell.ShowMessageBox(

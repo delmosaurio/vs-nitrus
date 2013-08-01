@@ -109,7 +109,7 @@ namespace DC.Nitrus.Test
         public void Solution1()
         {
             // project provider
-            ProjectsProvider.CurrentProvider = new DebugProjectProcider();
+            ProjectsProvider.CurrentProvider = new DebugProjectProvider();
 
             var path = Path.Combine(_cases, "solution1");
             

@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <GroupBox Header="Packages" Margin="5">
+        <GroupBox Header="Bottles" Margin="5">
 
         </GroupBox>
     </ScrollViewer>

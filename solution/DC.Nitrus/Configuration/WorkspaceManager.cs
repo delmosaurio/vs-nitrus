@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,11 +28,23 @@ namespace DC.Nitrus.Configuration
             return Directory.GetFiles(path).Any(rex.IsMatch);
         }
         
+        public static Workspace LoadOrInitialize(string path)
+        {
+            if (Directory.Exists(path) && IsAWorkspace(path))
+            {
+                return Load(path);
+            }
+
+            return Initialize(path);
+        }
+
         public static Workspace Load(string path)
         {
             var ws = ConfigReader.Read<Workspace>(Path.Combine(path, DefaultFilename));
 
             LoadContext(ws, path);
+
+            Debug.WriteLine("The workspace was loaded");
 
             return ws;
         }
@@ -40,18 +53,30 @@ namespace DC.Nitrus.Configuration
         {
             var bpath = Path.Combine(path, BottleManager.RelativePath);
 
+            if (!Directory.Exists(bpath))
+            {
+                Debug.WriteLine("The botles path not exists.");
+                return;
+            }
+
             // read bottles in the ´path´
             var pdir = new DirectoryInfo(bpath);
-
+            
             var folders = pdir.GetDirectories("*", SearchOption.TopDirectoryOnly);
 
+            if (!folders.Any())
+            {
+                Debug.WriteLine("No bottles to load.");
+                return;
+            }
+
             var bottles = folders
-                          .Select(f => f.FullName)
-                          .Where(BottleManager.IsABottle)
-                          .Select(BottleManager.Load);
+                              .Select(f => f.FullName)
+                              .Where(BottleManager.IsABottle)
+                              .Select(BottleManager.Load);
 
-            ws.Bottles.AddRange(bottles);
-
+            ws.Bottles.AddRange(bottles);   
+            
             // refresh de context
             var ctx = ws.Context;
             var expects = ws.Bottles.SelectMany(b => b.Arguments);
@@ -89,12 +114,14 @@ namespace DC.Nitrus.Configuration
             
             Save(ws, path, force);
 
+            Debug.WriteLine("The workspace was initialized");
+
             return ws;
         }
 
         public static void Save(Workspace workspace, string path, bool force = false)
         {
-            DirectoryInfo dir;
+            var dir= new DirectoryInfo(path); ;
 
             if (!Directory.Exists(path))
             {
@@ -104,17 +131,23 @@ namespace DC.Nitrus.Configuration
             {
                 var rex = new Regex(DefaultFilename, RegexOptions.IgnoreCase);
 
-                if (Directory.GetFiles(path).Any(rex.IsMatch))
+                if (Directory.GetFiles(path).Any(rex.IsMatch) && IsAWorkspace(path))
                 {
                     throw new Exception("The path already have a workspace");
                 }
-
-                dir = new DirectoryInfo(path);
             }
 
-            var filename = Path.Combine(path, DefaultFilename);
+            var filename = Path.Combine(dir.FullName, DefaultFilename);
 
             ConfigWriter.Write(workspace, filename);
+
+            // create others folders
+
+            // ./bottles
+            Directory.CreateDirectory(Path.Combine(dir.FullName, BottleManager.RelativePath));
+
+            Debug.WriteLine("The workspace was saved");
+
         }
         #endregion
 

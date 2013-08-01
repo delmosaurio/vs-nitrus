@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DC.Nitrus
 {
-    public class DebugProjectProcider : IProjectsProvider
+    public class DebugProjectProvider : IProjectsProvider
     {
         private string[] _projectNames = { "project1", "project2", "project3" };
 
