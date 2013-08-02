@@ -19,8 +19,10 @@ namespace DC.Nitrus
         #endregion
 
         #region Members
+        [JsonProperty("fullname")]
         public string Fullname { get; set; }
 
+        [JsonProperty("value")]
         public string Value{ get; set; }
         #endregion
     }

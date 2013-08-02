@@ -14,6 +14,8 @@ namespace DC.Nitrus
         
         #region Fields
         private string _uid = "";
+
+        private List<LayerScopeBindable> _layerScope;
         #endregion
 
         #region Constructor
@@ -35,6 +37,13 @@ namespace DC.Nitrus
             get { return _uid; }
             set { _uid = value.ToLower(); }
         }
+
+        [JsonIgnore]
+        public List<LayerScopeBindable> LayerScope
+        {
+            get { return _layerScope ?? (_layerScope = new List<LayerScopeBindable>()); }
+        }
+        
 
         [JsonIgnore]
         public Bottle Owner { get; set; }

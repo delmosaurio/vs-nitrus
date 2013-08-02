@@ -55,6 +55,7 @@
     <Compile Include="Layer.cs" />
     <Compile Include="LayerCollection.cs" />
     <Compile Include="LayerScope.cs" />
+    <Compile Include="LayerScopeBindable.cs" />
     <Compile Include="LayerScopeCollection.cs" />
     <Compile Include="ProjectsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,23 +12,23 @@ namespace DC.Nitrus.Explorer.Model
     {
 
         #region Fields 
-        private BottleCollection _packages;
+        private BottleCollection _bottles;
         #endregion
 
         #region Constructor
-        public BottlesCollectionTreeItem(BottleCollection packages)
+        public BottlesCollectionTreeItem(BottleCollection bottles)
         {
-            _packages = packages;
-            this.Tag = _packages;
+            _bottles = bottles;
+            this.Tag = _bottles;
 
-            this.Header = "Packages";
+            this.Header = "Bottles";
 
             CreateNodes();
         }
 
         private void CreateNodes()
         {
-            foreach(var bottle in _packages)
+            foreach(var bottle in _bottles)
             {
                 Items.Add(new BottleTreeItem(bottle));
 

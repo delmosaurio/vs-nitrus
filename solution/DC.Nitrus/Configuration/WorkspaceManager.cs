@@ -16,6 +16,8 @@ namespace DC.Nitrus.Configuration
         #region Members
         public static string DefaultFilename = "workspace.json";
 
+        public static string DefaultFolder = "_Nitrus";
+
         public static bool IsAWorkspace(string path)
         {
             var e = Directory.Exists(path);
@@ -89,6 +91,15 @@ namespace DC.Nitrus.Configuration
 
             ctx.Arguments.AddRange(argsToAdd);
 
+            // fill the bottle args
+            var args = ws.Bottles.SelectMany(b => b.Arguments);
+
+            foreach (var bottleArg in args)
+            {
+                var wba = ctx.Arguments[bottleArg.Fullname];
+                bottleArg.Value = wba.Value;
+            }
+
             // add layers if not exist
             var layers = ws.Bottles.SelectMany(b => b.Layes);
             
@@ -97,6 +108,21 @@ namespace DC.Nitrus.Configuration
                         .Select(l => new LayerScope(l.Fullname));
             
             ctx.LayersScopes.AddRange(lyToAdd);
+
+            // fill layer scope
+            foreach (var ls in ctx.LayersScopes)
+            {
+                foreach (var pn in ProjectsProvider.CurrentProvider.ProjectNames.Where(pn => !ls.Scope.ContainsKey(pn)))
+                {
+                    ls.Scope.Add(pn, false);
+                }
+            }
+
+            foreach (var ls in layers)
+            {
+                var cls = ctx.LayersScopes[ls.Fullname];
+                ls.LayerScope.AddRange(cls.Scope.Select(s => new LayerScopeBindable() { Name = s.Key, Selected = s.Value }));
+            }
         }
 
         public static Workspace Create()
@@ -139,6 +165,31 @@ namespace DC.Nitrus.Configuration
 
             var filename = Path.Combine(dir.FullName, DefaultFilename);
 
+            // fill the workspace args from Bottles objects
+            var args = workspace.Bottles.SelectMany(b => b.Arguments);
+
+            foreach (var bottleArg in args)
+            {
+                var wba = workspace.Context.Arguments[bottleArg.Fullname];
+                wba.Value = bottleArg.Value;
+            }
+
+
+            // fill layer scope
+            var layers = workspace.Bottles.SelectMany(b => b.Layes);
+
+            foreach (var ls in layers)
+            {
+                var cls = workspace.Context.LayersScopes[ls.Fullname];
+
+                foreach (var bindedlScope in ls.LayerScope)
+                {
+                    cls.Scope[bindedlScope.Name] = bindedlScope.Selected;
+                }
+                
+            }
+
+            // write file
             ConfigWriter.Write(workspace, filename);
 
             // create others folders

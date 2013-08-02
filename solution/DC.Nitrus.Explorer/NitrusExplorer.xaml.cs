@@ -30,7 +30,7 @@ namespace DC.Nitrus.Explorer
     {
 
         #region Fields
-        private string _solPath = "";
+        private string _workspacePath = "";
 
         private Workspace _workspace;
         #endregion
@@ -62,9 +62,9 @@ namespace DC.Nitrus.Explorer
         #region private members
         private void LoadWorkspace(string solutionPath = "", string[] projectNames = null)
         {
-            _solPath = solutionPath;
+            _workspacePath = solutionPath;
 
-            if (string.IsNullOrEmpty(_solPath))
+            if (string.IsNullOrEmpty(_workspacePath))
             {
                 var fd = new FolderBrowserDialog();
 
@@ -73,19 +73,25 @@ namespace DC.Nitrus.Explorer
                     this.Close();
                 }
 
-                _solPath = fd.SelectedPath;
+                _workspacePath = fd.SelectedPath;
 
             }
 
-            var wk = WorkspaceManager.Load(_solPath);
+            var wk = WorkspaceManager.Load(_workspacePath);
 
-            LoadWorkspace(wk);
+            Load(wk);
         }
 
-        public void LoadWorkspace(Workspace workspace)
+        public void LoadWorkspace(Workspace workspace, string path)
         {
-            
+            _workspacePath = path;
+            Load(workspace);
+        }
+
+        private void Load(Workspace workspace)
+        {
             _workspace = workspace;
+
             WorkspaceView = new TreeWorkspace(_workspace);
         }
 
@@ -153,8 +159,8 @@ namespace DC.Nitrus.Explorer
         private void _btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (_workspace == null) return;
-
-            WorkspaceManager.Save( _workspace, _solPath, true );
+            
+            WorkspaceManager.Save( _workspace, _workspacePath, true );
         }
 
         private void _btnCancel_Click(object sender, RoutedEventArgs e)

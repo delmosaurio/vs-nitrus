@@ -26,8 +26,11 @@ namespace DC.Nitrus
         [JsonProperty(PropertyName = "dafultValue")]
         public string DefaultValue { get; set; }
 
-        [JsonProperty(PropertyName = "desciption")]
+        [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
+
+        [JsonIgnore]
+        public string Value { get; set; }
 
         [JsonIgnore]
         public bool ReadOnly { get; set; }

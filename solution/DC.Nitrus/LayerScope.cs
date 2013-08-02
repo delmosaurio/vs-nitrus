@@ -22,7 +22,7 @@ namespace DC.Nitrus
         #endregion
 
         #region Member
-
+        [JsonProperty("fullname")]
         public string Fullname { get; set; }
 
         [JsonProperty("scope")]

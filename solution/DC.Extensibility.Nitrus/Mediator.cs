@@ -35,7 +35,7 @@ namespace DC.Extensibility.Nitrus
             ProjectsProvider.CurrentProvider = new VsProjectsProvider();
             ProjectsProvider.CurrentProvider.ProjectNames = ms.ProjectNames.ToArray();
 
-            var outPath = Path.Combine(ms.SolutionPath, "_Nitrus");
+            var outPath = Path.Combine(ms.SolutionPath, WorkspaceManager.DefaultFolder);
 
             if (!Directory.Exists(outPath))
             {
@@ -44,18 +44,9 @@ namespace DC.Extensibility.Nitrus
 
             var ws = WorkspaceManager.LoadOrInitialize(outPath);
             
-            /*
-            if (!WorkspaceManager.IsAWorkspace(outPath))
-            {
-                WorkspaceManager.LoadOrInitialize(outPath);
-            }
-
-            var ws = WorkspaceManager.Initialize(outPath);
-            */
-
             var explorer = new NitrusExplorer();
 
-            explorer.LoadWorkspace(ws);
+            explorer.LoadWorkspace(ws, outPath);
 
             explorer.ShowDialog();
 

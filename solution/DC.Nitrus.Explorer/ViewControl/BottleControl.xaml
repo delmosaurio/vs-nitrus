@@ -15,7 +15,7 @@
                             <StackPanel >
 
                                 <Label Content="{Binding Name}"/>
-                                <TextBox Text="{Binding Value}"/>
+                                <TextBox Text="{Binding Value}" />
 
                             </StackPanel>
                         </DataTemplate>
