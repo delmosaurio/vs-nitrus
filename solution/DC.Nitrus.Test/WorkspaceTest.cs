@@ -9,7 +9,7 @@ namespace DC.Nitrus.Test
     public class WorkspaceTest
     {
         #region Fields
-        private string _cases = @"D:\dev\data\ns";
+        private string _cases = @" %devdata%\ns";
         #endregion
 
         #region Basics
